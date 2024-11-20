@@ -9,19 +9,19 @@
 HOME=$_CONDOR_JOB_IWD
 
 # create new python environment
-cd ${HOME}/tmp
+#cd ${HOME}/tmp
 # Set up venv
-python3 -m venv venv
-source venv/bin/activate
-python3 -m pip install pip --upgrade
+#python3 -m venv venv
+#source venv/bin/activate
+#python3 -m pip install pip --upgrade
 # install pytorch
 #python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 pytorch_lightning awkward dgl numpy torch_scatter wandb
-python3 -m pip install XRootD
 cd ${HOME}
 
 # Copy files into job
 (
-    source /cvmfs/sft.cern.ch/lcg/views/LCG_100cuda/x86_64-centos7-gcc8-opt/setup.sh
+   # source /cvmfs/sft.cern.ch/lcg/views/LCG_100cuda/x86_64-centos7-gcc8-opt/setup.sh
+    source /cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh  -r 2024-05-09
     xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/trainingFiles/output_1279601_{1..2}.root tmp/
 )
 

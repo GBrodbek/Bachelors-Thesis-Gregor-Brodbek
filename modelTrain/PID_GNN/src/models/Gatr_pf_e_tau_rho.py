@@ -92,7 +92,7 @@ class ExampleWrapper(L.LightningModule):
         # self.loss_crit = nn.BCELoss()
 
         self.readout = "sum"
-        self.MLP_layer = MLPReadout(17 + 3, 4)
+        self.MLP_layer = MLPReadout(17 + 3, 5)
         self.m = nn.Sigmoid()
 
     def obtain_loss_weighted(self, labels_true):
@@ -234,7 +234,7 @@ class ExampleWrapper(L.LightningModule):
         #self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
-            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=4),
+            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=5),
         )
         loss_time_end = time()
         if self.trainer.is_global_zero:
@@ -289,7 +289,7 @@ class ExampleWrapper(L.LightningModule):
         #self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
-            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=4),
+            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=5),
         )
 
         model_output1 = model_output
