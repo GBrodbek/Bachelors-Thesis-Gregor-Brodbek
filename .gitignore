@@ -1,10 +1,16 @@
 # root files
 *.root
 
+# Data generation files
+condor/
+condor_background/
+
 # kp was das ist
 core.35
 core.38
 
+# gibt irgendein security issue auf Github
+wandb/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -169,6 +175,3 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Data generation files
-condor
-condor_background
