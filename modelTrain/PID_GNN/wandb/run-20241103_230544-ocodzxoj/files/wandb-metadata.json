@@ -1,0 +1,290 @@
+{
+    "os": "Linux-4.18.0-553.8.1.el8_10.x86_64-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2024-11-03T22:05:45.575914",
+    "startedAt": "2024-11-03T22:05:44.804466",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--data-train",
+        "/work/gbrodbek/FCC_fullsim/FullSim_TauID/files_for_generation_chain/condor/outputFiles/output_1279601_3.root",
+        "--data-config",
+        "config_files/config_hit_tracks_tau.yaml",
+        "-clust",
+        "-clust_dim",
+        "3",
+        "--network-config",
+        "src/models/wrapper/example_mode_gatr_e.py",
+        "--model-prefix",
+        "/work/gbrodbek/FCC_fullsim/FullSim_TauID/modelTrain/modelsaves/",
+        "--num-workers",
+        "0",
+        "--gpus",
+        "0",
+        "--batch-size",
+        "16",
+        "--start-lr",
+        "1e-3",
+        "--num-epochs",
+        "10",
+        "--fetch-step",
+        "0.1",
+        "--log-wandb",
+        "--wandb-displayname",
+        "training_with_different_model5",
+        "--wandb-projectname",
+        "lightning_logs",
+        "--wandb-entity",
+        "gbrodbek-kit4749"
+    ],
+    "state": "running",
+    "program": "-m src.train_lightning1",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/doloresgarcia/PID_GNN.git",
+        "commit": "dd819be3c82e8e4921fd205e5a8eb65205f7a480"
+    },
+    "email": null,
+    "root": "/work/gbrodbek/FCC_fullsim/FullSim_TauID/modelTrain/PID_GNN",
+    "host": "deepthought",
+    "username": "gbrodbek",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 3086.5488749999995,
+        "min": 3100.0,
+        "max": 3100.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2770.206,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2780.507,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2995.818,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 2995.931,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        },
+        {
+            "current": 3100.0,
+            "min": 3100.0,
+            "max": 3100.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 0.0625,
+            "used": 1.52587890625e-05
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX TITAN X",
+    "gpu_count": 4,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX TITAN X",
+            "memory_total": 12884901888
+        },
+        {
+            "name": "NVIDIA GeForce GTX TITAN X",
+            "memory_total": 12884901888
+        },
+        {
+            "name": "NVIDIA GeForce GTX TITAN X",
+            "memory_total": 12884901888
+        },
+        {
+            "name": "NVIDIA GeForce GTX TITAN X",
+            "memory_total": 12884901888
+        }
+    ],
+    "memory": {
+        "total": 503.274227142334
+    }
+}

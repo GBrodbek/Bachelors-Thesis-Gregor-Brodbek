@@ -1,0 +1,65 @@
+You are using pip version 21.3.1, however version 24.3.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+xrdcp: Destination not specified.
+
+Usage:   xrdcp [<options>] <src> [<src> [. . .]] <dest>
+
+Options: [--cksum <args>] [--debug <lvl>] [--coerce] [--dynamic-src]
+         [--force] [--help] [--infiles <fn>] [--license] [--nopbar]
+         [--notlsok] [--parallel <n>] [--posc] [--proxy <host>:<port>]
+         [--recursive] [--retry <n>] [--server] [--silent] [--sources <n>]
+         [--streams <n>] [--tlsnodata] [--tlsmetalink]
+         [--tpc [delegate] {first|only}] [--verbose] [--version]
+         [--xrate <rate>] [--zip <file>] [--allow-http] [--xattr]
+         [--zip-mtln-cksum] [--rm-bad-cksum] [--continue]
+
+<src>:   [[x]root[s]://<host>[:<port>]/]<path> | -
+<dest>:  [[x]root[s]://<host>[:<port>]/]<path> | -
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib64/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/var/lib/condor/execute/dir_2893365/PID_GNN/src/train_lightning1.py", line 21, in <module>
+    import pytorch_lightning as L
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/__init__.py", line 20, in <module>
+    from pytorch_lightning.callbacks import Callback  # noqa: E402
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/callbacks/__init__.py", line 26, in <module>
+    from pytorch_lightning.callbacks.pruning import ModelPruning
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/callbacks/pruning.py", line 31, in <module>
+    from pytorch_lightning.core.lightning import LightningModule
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/core/__init__.py", line 16, in <module>
+    from pytorch_lightning.core.lightning import LightningModule
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/core/lightning.py", line 39, in <module>
+    from pytorch_lightning.trainer.connectors.logger_connector.fx_validator import _FxValidator
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/trainer/__init__.py", line 16, in <module>
+    from pytorch_lightning.trainer.trainer import Trainer
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/trainer/trainer.py", line 30, in <module>
+    from pytorch_lightning.accelerators import Accelerator, IPUAccelerator
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/accelerators/__init__.py", line 13, in <module>
+    from pytorch_lightning.accelerators.accelerator import Accelerator  # noqa: F401
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/accelerators/accelerator.py", line 26, in <module>
+    from pytorch_lightning.plugins.precision import ApexMixedPrecisionPlugin, NativeMixedPrecisionPlugin, PrecisionPlugin
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/plugins/__init__.py", line 8, in <module>
+    from pytorch_lightning.plugins.plugins_registry import (  # noqa: F401
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/plugins/plugins_registry.py", line 20, in <module>
+    from pytorch_lightning.plugins.training_type.training_type_plugin import TrainingTypePlugin
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/plugins/training_type/__init__.py", line 13, in <module>
+    from pytorch_lightning.plugins.training_type.tpu_spawn import TPUSpawnPlugin  # noqa: F401
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/plugins/training_type/tpu_spawn.py", line 27, in <module>
+    from pytorch_lightning.loggers import LoggerCollection, TensorBoardLogger
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/loggers/__init__.py", line 26, in <module>
+    from pytorch_lightning.loggers.wandb import _WANDB_AVAILABLE, WandbLogger  # noqa: F401
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/loggers/wandb.py", line 35, in <module>
+    _WANDB_GREATER_EQUAL_0_10_22 = _compare_version("wandb", operator.ge, "0.10.22")
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pytorch_lightning/utilities/imports.py", line 85, in _compare_version
+    pkg_version = Version(pkg_resources.get_distribution(package).version)
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pkg_resources/__init__.py", line 471, in get_distribution
+    dist = get_provider(dist)
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pkg_resources/__init__.py", line 347, in get_provider
+    return working_set.find(moduleOrReq) or require(str(moduleOrReq))[0]
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pkg_resources/__init__.py", line 891, in require
+    needed = self.resolve(parse_requirements(requirements))
+  File "/var/lib/condor/execute/dir_2893365/tmp/venv/lib64/python3.6/site-packages/pkg_resources/__init__.py", line 777, in resolve
+    raise DistributionNotFound(req, requirers)
+pkg_resources.DistributionNotFound: The 'wandb' distribution was not found and is required by the application

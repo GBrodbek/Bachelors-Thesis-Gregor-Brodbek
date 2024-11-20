@@ -1,0 +1,21 @@
+/cvmfs/sft.cern.ch/lcg/releases/R/3.6.3-0846b/x86_64-centos7-gcc8-opt/lib64/R/bin/exec/R: error while loading shared libraries: libreadline.so.6: cannot open shared object file: No such file or directory
+/cvmfs/sft.cern.ch/lcg/releases/R/3.6.3-0846b/x86_64-centos7-gcc8-opt/lib64/R/bin/exec/R: error while loading shared libraries: libreadline.so.6: cannot open shared object file: No such file or directory
+/cvmfs/sft.cern.ch/lcg/releases/R/3.6.3-0846b/x86_64-centos7-gcc8-opt/lib64/R/bin/exec/R: error while loading shared libraries: libreadline.so.6: cannot open shared object file: No such file or directory
+/cvmfs/sft.cern.ch/lcg/releases/R/3.6.3-0846b/x86_64-centos7-gcc8-opt/lib64/R/bin/exec/R: error while loading shared libraries: libreadline.so.6: cannot open shared object file: No such file or directory
+/cvmfs/sft.cern.ch/lcg/releases/R/3.6.3-0846b/x86_64-centos7-gcc8-opt/lib64/R/bin/exec/R: error while loading shared libraries: libreadline.so.6: cannot open shared object file: No such file or directory
+xrdcp: error while loading shared libraries: libssl.so.10: cannot open shared object file: No such file or directory
+DGL backend not selected or invalid.  Assuming PyTorch for now.
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/var/lib/condor/execute/dir_2688600/PID_GNN/src/train_lightning1.py", line 224, in <module>
+    main()
+  File "/var/lib/condor/execute/dir_2688600/PID_GNN/src/train_lightning1.py", line 113, in main
+    train_loader, val_loader, data_config, train_input_names = train_load(args)
+  File "/var/lib/condor/execute/dir_2688600/PID_GNN/src/utils/train_utils.py", line 97, in train_load
+    train_file_dict, train_files = to_filelist(args, "train")
+  File "/var/lib/condor/execute/dir_2688600/PID_GNN/src/utils/train_utils.py", line 55, in to_filelist
+    assert len(new_files) > 0
+AssertionError
