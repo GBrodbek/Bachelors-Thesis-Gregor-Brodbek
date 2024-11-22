@@ -21,12 +21,16 @@ cd ${HOME}
 # Copy files into job
 (
    # source /cvmfs/sft.cern.ch/lcg/views/LCG_100cuda/x86_64-centos7-gcc8-opt/setup.sh
-    source /cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh  -r 2024-05-09
+    #source /cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh  -r 2024-05-09
+    source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-ubuntu2004-gcc9-opt/setup.sh
     xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/trainingFiles/output_1279601_{1..2}.root tmp/
 )
 
 # extract tar file
 tar -xzf scriptForTraining.tar.gz
+
+export WANDB_API_KEY=ef88c6e1260343f280284ed9716c1f4bb76d76b1
+wandb login 
 # Run training
 cd PID_GNN
-python3 -m src.train_lightning1 --data-train ${HOME}/trainingFiles/output_1279601_{1..2}.root  --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp --num-workers 0 --gpus 0   --batch-size 16  --start-lr 1e-3 --num-epochs 10  --fetch-step 0.1 --log-wandb --wandb-displayname run_model --wandb-projectname test_logs --wandb-entity gbrodbek-kit4749
+python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1279601_{1..2}.root  --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp --num-workers 1 --gpus 1 --batch-size 16 --start-lr 1e-3 --num-epochs 10  --fetch-step 0.1 --log-wandb --wandb-displayname condor_testrun --wandb-projectname test_logs --wandb-entity gbrodbek-kit4749

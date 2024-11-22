@@ -1,0 +1,64 @@
+wandb: Currently logged in as: gbrodbek (gbrodbek-kit4749). Use `wandb login --relogin` to force relogin
+DGL backend not selected or invalid.  Assuming PyTorch for now.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+wandb: Currently logged in as: gbrodbek (gbrodbek-kit4749). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.18.7 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.2
+wandb: Run data is saved locally in ./wandb/run-20241121_172809-ysuxvzpw
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run condor_testrun
+wandb: ⭐️ View project at https://wandb.ai/gbrodbek-kit4749/test_logs
+wandb: 🚀 View run at https://wandb.ai/gbrodbek-kit4749/test_logs/runs/ysuxvzpw
+/usr/local/lib/python3.8/dist-packages/pytorch_lightning/callbacks/model_checkpoint.py:639: Checkpoint directory /var/lib/condor/execute/dir_1439506/tmp exists and is not empty.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [GPU-bd60eeb4]
+
+  | Name                    | Type        | Params
+--------------------------------------------------------
+0 | gatr                    | GATr        | 924 K 
+1 | ScaledGooeyBatchNorm2_1 | BatchNorm1d | 6     
+2 | loss_crit               | BCELoss     | 0     
+3 | MLP_layer               | MLPReadout  | 945   
+4 | m                       | Sigmoid     | 0     
+--------------------------------------------------------
+925 K     Trainable params
+0         Non-trainable params
+925 K     Total params
+3.703     Total estimated model params size (MB)
+/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/connectors/data_connector.py:441: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=254` in the `DataLoader` to improve performance.
+/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/connectors/data_connector.py:441: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=254` in the `DataLoader` to improve performance.
+`Trainer.fit` stopped: `max_epochs=10` reached.
+wandb: - 15.239 MB of 15.254 MB uploadedwandb: \ 15.240 MB of 15.254 MB uploadedwandb: | 15.240 MB of 15.254 MB uploadedwandb: / 15.240 MB of 15.254 MB uploadedwandb: - 15.240 MB of 15.254 MB uploadedwandb: \ 15.240 MB of 15.266 MB uploadedwandb: | 15.253 MB of 15.266 MB uploadedwandb: / 15.254 MB of 15.266 MB uploadedwandb: - 15.255 MB of 15.266 MB uploadedwandb: \ 15.255 MB of 15.266 MB uploadedwandb: | 15.256 MB of 15.266 MB uploadedwandb: / 15.257 MB of 15.266 MB uploadedwandb: - 15.257 MB of 15.266 MB uploadedwandb: \ 15.258 MB of 15.266 MB uploadedwandb: | 15.258 MB of 15.266 MB uploadedwandb: / 15.259 MB of 15.266 MB uploadedwandb: - 15.260 MB of 15.266 MB uploadedwandb: \ 15.260 MB of 15.266 MB uploadedwandb: | 15.261 MB of 15.266 MB uploadedwandb: / 15.262 MB of 15.266 MB uploadedwandb: - 15.263 MB of 15.266 MB uploadedwandb: \ 15.263 MB of 15.266 MB uploadedwandb: | 15.264 MB of 15.266 MB uploadedwandb: / 15.265 MB of 15.266 MB uploadedwandb: - 15.266 MB of 15.266 MB uploadedwandb: \ 15.266 MB of 15.266 MB uploadedwandb: 
+wandb: Run history:
+wandb:                       accuracy ▁▂▂▅▂▄▄▅▅▅▆▇▅▆▇▇▆▇▇▅▆▇▅▇▅▅█▇▅▇▅▆▆▆▇▇▇▇▆▇
+wandb:                  accuracy val  ▁▃▂▂▃▆▆▆▅▇▆▆▅▇▇▇▄▂▃▃▆▅▄▆▆▇█▇█▇█▇█▇▆▇▇▇█▇
+wandb:                          epoch ▁▂▃▃▄▅▆▆▇█
+wandb:                           loss █▃▂▂▂▂▂▁▂▂▂▁▂▁▁▁▁▁▂▂▂▁▂▁▁▁▁▁▁▁▂▁▁▁▁▁▁▁▁▁
+wandb: loss_comp_time_inside_training ▂▁▅▂▂▂▂▂▅▅▅▂▅▂▂▅▆▇▅▄▁▂█▃▆▇▅▃▄▅▃▄▅▄▅▄▂▁▄▅
+wandb:                       loss_val █▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:                        lr-Adam ▁▁▁▁▁▁▁▁▁▁
+wandb:      misc_time_inside_training ▁▁▂▁▁▁▁▁▂▂█▁▂▂▂▂▄▂▂▂▁▁▄▂▂▃▂▂▂▂▂▂▄▂▂▂▁▁▂▂
+wandb:               train_loss_epoch █▅▃▃▂▂▂▁▁▁
+wandb:            trainer/global_step ▁▁▁▁▂▂▂▂▃▃▃▃▃▃▃▃▄▄▄▄▅▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇████
+wandb:             training_step_time ▃▁▆▂▁▅▂▂▆▆▆▅▆▁▂▇▆▆▅▇▃▂▆▃▆█▅▄▅▆▅▅▄▅▅▄▅▅▃▂
+wandb: 
+wandb: Run summary:
+wandb:                       accuracy 0.73913
+wandb:                  accuracy val  0.88
+wandb:                          epoch 9
+wandb:                           loss 0.24582
+wandb: loss_comp_time_inside_training 0.0005
+wandb:                       loss_val 0.11292
+wandb:                        lr-Adam 0.001
+wandb:      misc_time_inside_training 0.00051
+wandb:               train_loss_epoch 0.48468
+wandb:            trainer/global_step 909
+wandb:             training_step_time 0.13546
+wandb: 
+wandb: 🚀 View run condor_testrun at: https://wandb.ai/gbrodbek-kit4749/test_logs/runs/ysuxvzpw
+wandb: Synced 5 W&B file(s), 222 media file(s), 226 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20241121_172809-ysuxvzpw/logs

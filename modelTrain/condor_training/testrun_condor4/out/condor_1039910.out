@@ -13,7 +13,9 @@ https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
 
 A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
 
-Unsupported OS or OS couldn't be correctly detected, aborting...
-Supported OSes are: AlmaLinux/RockyLinux/RHEL 9, Ubuntu 22.04
 Setting the default backend to "pytorch". You can change it in the ~/.dgl/config.json file or export the DGLBACKEND environment variable.  Valid options are: pytorch, mxnet, tensorflow (all lowercase)
 local rank 0
+0 2
+using GPUs: [1]
+Model options:  {}
+Using GPUs: [1]

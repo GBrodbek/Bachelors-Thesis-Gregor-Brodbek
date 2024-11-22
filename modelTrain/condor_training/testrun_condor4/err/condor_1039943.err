@@ -1,0 +1,41 @@
+DGL backend not selected or invalid.  Assuming PyTorch for now.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+wandb: ERROR api_key not configured (no-tty). call wandb.login(key=[your_api_key])
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/var/lib/condor/execute/dir_952464/PID_GNN/src/train_lightning1.py", line 224, in <module>
+    main()
+  File "/var/lib/condor/execute/dir_952464/PID_GNN/src/train_lightning1.py", line 186, in main
+    trainer.fit(
+  File "/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/trainer.py", line 950, in _run
+    call._call_setup_hook(self)  # allow user to setup lightning_module in accelerator environment
+  File "/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/call.py", line 86, in _call_setup_hook
+    if hasattr(logger, "experiment"):
+  File "/usr/local/lib/python3.8/dist-packages/lightning_fabric/loggers/logger.py", line 118, in experiment
+    return fn(self)
+  File "/usr/local/lib/python3.8/dist-packages/pytorch_lightning/loggers/wandb.py", line 399, in experiment
+    self._experiment = wandb.init(**self._wandb_init)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_init.py", line 1195, in init
+    raise e
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_init.py", line 1172, in init
+    wi.setup(kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_init.py", line 306, in setup
+    wandb_login._login(
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_login.py", line 317, in _login
+    wlogin.prompt_api_key()
+  File "/usr/local/lib/python3.8/dist-packages/wandb/sdk/wandb_login.py", line 247, in prompt_api_key
+    raise UsageError("api_key not configured (no-tty). call " + directive)
+wandb.errors.UsageError: api_key not configured (no-tty). call wandb.login(key=[your_api_key])

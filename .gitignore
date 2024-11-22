@@ -1,6 +1,9 @@
 # root files
 *.root
 
+# model weight files
+*.ckpt
+
 # Data generation files
 condor/
 condor_background/
