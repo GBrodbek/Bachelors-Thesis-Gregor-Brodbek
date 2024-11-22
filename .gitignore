@@ -4,6 +4,11 @@
 # model weight files
 *.ckpt
 
+# log, out, err messages from condor
+*.log
+*.out
+*.err
+
 # Data generation files
 condor/
 condor_background/

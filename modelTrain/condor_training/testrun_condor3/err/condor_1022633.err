@@ -1,20 +1,0 @@
-You are using pip version 21.3.1, however version 24.3.1 is available.
-You should consider upgrading via the 'pip install --upgrade pip' command.
-ERROR: Could not find a version that satisfies the requirement torch (from versions: none)
-ERROR: No matching distribution found for torch
-Job: 1/2
-Source: root://ceph-node-j.etp.kit.edu:1094//gbrodbek/trainingFiles/output_1279601_1.root
-Target: file://localhost/var/lib/condor/execute/dir_911059/tmp/output_1279601_1.root
-[8MB/34.52MB][ 23%][===========>                                      ][8MB/s]  [24MB/34.52MB][ 69%][==================================>               ][24MB/s]  [34.52MB/34.52MB][100%][==================================================][34.52MB/s]  [34.52MB/34.52MB][100%][==================================================][34.52MB/s]  
-Job: 2/2
-Source: root://ceph-node-j.etp.kit.edu:1094//gbrodbek/trainingFiles/output_1279601_2.root
-Target: file://localhost/var/lib/condor/execute/dir_911059/tmp/output_1279601_2.root
-[8MB/34.52MB][ 23%][===========>                                      ][8MB/s]  [34.52MB/34.52MB][100%][==================================================][34.52MB/s]  [34.52MB/34.52MB][100%][==================================================][34.52MB/s]  
-Traceback (most recent call last):
-  File "/usr/lib64/python3.6/runpy.py", line 193, in _run_module_as_main
-    "__main__", mod_spec)
-  File "/usr/lib64/python3.6/runpy.py", line 85, in _run_code
-    exec(code, run_globals)
-  File "/var/lib/condor/execute/dir_911059/PID_GNN/src/train_lightning1.py", line 10, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
