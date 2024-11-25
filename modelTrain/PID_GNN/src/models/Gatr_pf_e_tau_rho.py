@@ -295,13 +295,13 @@ class ExampleWrapper(L.LightningModule):
         model_output1 = model_output
         if self.args.predict:
             d = {
-                "pi": model_output1.detach().cpu()[:, 0].view(-1),       # is it correct sequence? is not 0 e, 1 mu, ...
+                "pi": model_output1.detach().cpu()[:, 0].view(-1),          # is it correct sequence? is not 0 e, 1 mu, ...
                 "pi0": model_output1.detach().cpu()[:, 1].view(-1),
                 "e": model_output1.detach().cpu()[:, 2].view(-1),
                 "muon": model_output1.detach().cpu()[:, 3].view(-1),
                 "rho": model_output1.detach().cpu()[:, 4].view(-1),
                 "labels_true": labels_true.detach().cpu().view(-1),
-                "energy": y.E.detach().cpu().view(-1),
+                "energy": energies.detach().cpu().view(-1),                 #y.E.detach().cpu().view(-1)
             }
             #d = {
             #    "rho": model_output1.detach().cpu()[:, 0].view(-1),

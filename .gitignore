@@ -10,8 +10,8 @@
 *.err
 
 # Data generation files
-condor/
-condor_background/
+files_for_generation_chain/condor/
+files_for_generation_chain/condor_background/
 
 # kp was das ist
 core.35
