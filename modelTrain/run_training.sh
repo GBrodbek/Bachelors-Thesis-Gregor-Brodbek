@@ -4,11 +4,12 @@
 HOME=$_CONDOR_JOB_IWD
 
 cd ${HOME}
+mkdir -p tmp/
 
 # Copy files into job
 (
     source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-ubuntu2004-gcc9-opt/setup.sh
-    xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/trainingFiles/output_1279601_{1..50}.root tmp/
+    xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/newTrainingFiles/output_1149668_{0..50}.root tmp/
 )
 
 # directory to save model weights, that get transferred back
@@ -23,4 +24,4 @@ wandb login
 
 # Run training
 cd PID_GNN
-python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1279601_{1..50}.root  --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 1 --gpus 1 --batch-size 16 --start-lr 1e-3 --num-epochs 10  --fetch-step 0.1 --log-wandb --wandb-displayname files50epochs50 --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749
+python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1149668_{0..50}.root  --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 0 --gpus 1 --batch-size 30 --start-lr 1e-3 --num-epochs 50  --fetch-step 0.1 --log-wandb --wandb-displayname newfiles100epochs50 --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749

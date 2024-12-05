@@ -214,7 +214,7 @@ def create_graph(
     #
     # check decay types:
     if tau_sample and not graph_empty:
-        index_labels = torch.Tensor([0, 1, 2, 3, 4, 10, 10, 10, 10, 10, 10, 10]).to(
+        index_labels = torch.Tensor([0, 1, 2, 3, 4, 5, 6, 7, 10, 10, 10, 10]).to(
             labels_true.device
         )
         labels_true = g.ndata["label_true"]
@@ -224,14 +224,14 @@ def create_graph(
         # print("decay types", decay_types)
         if torch.sum(decay_types == 10) == 2:
             graph_empty = True
-        elif (torch.sum(decay_types == 10) == 1) and (torch.sum(decay_types == 4) == 1):
-            graph_empty = True
+        # elif (torch.sum(decay_types == 10) == 1) and (torch.sum(decay_types == 4) == 1):
+        #     graph_empty = True
         elif torch.sum(decay_types == 10) == 1:
             g = dgl.remove_nodes(g, torch.where(g.ndata["label_true"] == 10)[0])
-        elif torch.sum(decay_types == 4) == 1:
-            g = dgl.remove_nodes(g, torch.where(g.ndata["label_true"] == 4)[0])
-        elif torch.sum(decay_types == 4) == 2:
-            graph_empty = True
+        # elif torch.sum(decay_types == 4) == 1:
+        #     g = dgl.remove_nodes(g, torch.where(g.ndata["label_true"] == 4)[0])
+        # elif torch.sum(decay_types == 4) == 2:
+        #     graph_empty = True
     # g = dgl.remove_nodes(g, torch.where(g.ndata["tau_label"] == 11)[0])
     # print('found one 10 decay')
     # else the two tau decays are part of the decays we know and love

@@ -30,11 +30,13 @@ def get_decay_type(daughters, gen_part_coll):
         pdgs.append(gen_part_coll[daugther].getPDG())
     print("PDGS", pdgs)
     decays = [
-        [11, 12, 16],
-        [13, 14, 16],
-        [16, 111, 211],
-        [16, 211],
-        [16, 111, 111, 211],
+        [11, 12, 16],               # tau to e ve vtau
+        [13, 14, 16],               # tau to mu- vmu vtau
+        [16, 111, 211],             # tau to pi pi0 vtau
+        [16, 211],                  # tau to pi vtau
+        [16, 111, 111, 211],        # tau to pi pi0 pi0 vtau
+        [16, 211, 211, 211],        # tau to 3 pi vtau
+        [16, 211, 211, 211, 111]    # tau to 3 pi pi0 vtau
     ]
     decay_check = [
         (set(np.abs(pdgs)) == set(decay)) * (len(pdgs) == len(decay))
@@ -430,6 +432,9 @@ def gen_particles_find(event, debug):
         dict()
     )  ## key: position in stored gen particle array, value: index in gen particle collection
 
+    decay_type1 = 7            # standard label for background samples, gets overwritten, if a tau is found
+    decay_type2 = 7
+
     n_part_pre = 0
     index_of_tau1 = 0
     index_of_tau2 = 0
@@ -440,17 +445,17 @@ def gen_particles_find(event, debug):
 
         theta = math.acos(momentum.z / p)
         phi = math.atan2(momentum.y, momentum.x)
-        if part.getPDG() == 23:
+        if part.getPDG() == 23:                         # search for Z boson
             daughters = get_genparticle_daughters(
                 j,
                 gen_part_coll,
             )
-            if len(daughters) == 2:
+            if len(daughters) == 2:                     # check if Z boson has two daughter particles
                 index_of_Z = j
                 index_of_tau1 = daughters[0]
                 index_of_tau2 = daughters[1]
         if index_of_Z > 0:
-            if j == index_of_tau1:
+            if j == index_of_tau1:                      # iterate to the first tau and find its decay mode
                 # find decay of tau 1
                 if (np.abs(part.getPDG()) == 15) and (part.getGeneratorStatus() != 2):
                     daughters = get_genparticle_daughters(
@@ -466,7 +471,7 @@ def gen_particles_find(event, debug):
                     )
                     decay_type1 = get_decay_type(daughters, gen_part_coll)
                     print("decay_type1", decay_type1)
-            if j == index_of_tau2:
+            if j == index_of_tau2:                      # iterate to the second tau and find its decay mode
                 # find decay of tau 2
                 # find decay of tau 1
                 if (np.abs(part.getPDG()) == 15) and (part.getGeneratorStatus() != 2):
@@ -640,8 +645,8 @@ def store_tracks(
             decay_type = decay_types[1]
             # print("belong to tau 2")
         else:
-            decay_type = -1
-            index_tau_ = -1
+            decay_type = 7                             # changed from -1 to 7, particles from background events
+            index_tau_ = 7
             # print("does not belong to any")
 
         trackstate = track.getTrackStates()[0]
@@ -916,8 +921,8 @@ def store_calo_hits(
                 decay_type = decay_types[1]
                 # print("belong to tau 2")
             else:
-                decay_type = -1
-                index_tau_ = -1
+                decay_type = 7                      # changed from -1 to 7, particles from background events
+                index_tau_ = 7
                 # print("does not belong to any")
 
             position = calohit.getPosition()

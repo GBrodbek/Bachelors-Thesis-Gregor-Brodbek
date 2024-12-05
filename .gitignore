@@ -4,6 +4,9 @@
 # model weight files
 *.ckpt
 
+# zip files of the training scripts
+.tar.gz
+
 # log, out, err messages from condor
 *.log
 *.out

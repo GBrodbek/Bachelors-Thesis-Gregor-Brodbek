@@ -73,6 +73,7 @@ class ExampleWrapper(L.LightningModule):
         self.df_showers = []
         self.df_showers_pandora = []
         self.df_showes_db = []
+        self.validation_step_outputs = []
         self.args = args
         self.gatr = GATr(
             in_mv_channels=1,
@@ -92,7 +93,7 @@ class ExampleWrapper(L.LightningModule):
         # self.loss_crit = nn.BCELoss()
 
         self.readout = "sum"
-        self.MLP_layer = MLPReadout(17 + 3, 5)
+        self.MLP_layer = MLPReadout(17 + 3, 8)
         self.m = nn.Sigmoid()
 
     def obtain_loss_weighted(self, labels_true):
@@ -234,7 +235,7 @@ class ExampleWrapper(L.LightningModule):
         #self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
-            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=5),
+            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=8),
         )
         loss_time_end = time()
         if self.trainer.is_global_zero:
@@ -268,7 +269,7 @@ class ExampleWrapper(L.LightningModule):
             os.makedirs(show_df_eval_path)
         if not os.path.exists(cluster_features_path):
             os.makedirs(cluster_features_path)
-        self.validation_step_outputs = []
+        # self.validation_step_outputs = []
         y = batch[1]
         batch_g = batch[0]
         shap_vals, ec_x = None, None
@@ -289,17 +290,20 @@ class ExampleWrapper(L.LightningModule):
         #self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
-            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=5),
+            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=8),
         )
 
         model_output1 = model_output
         if self.args.predict:
             d = {
-                "pi": model_output1.detach().cpu()[:, 0].view(-1),          # is it correct sequence? is not 0 e, 1 mu, ...
-                "pi0": model_output1.detach().cpu()[:, 1].view(-1),
-                "e": model_output1.detach().cpu()[:, 2].view(-1),
-                "muon": model_output1.detach().cpu()[:, 3].view(-1),
-                "rho": model_output1.detach().cpu()[:, 4].view(-1),
+                "e": model_output1.detach().cpu()[:, 0].view(-1),          # is it correct sequence? is not 0 e, 1 mu, ...
+                "mu": model_output1.detach().cpu()[:, 1].view(-1),
+                "pi_pi0": model_output1.detach().cpu()[:, 2].view(-1),
+                "pi": model_output1.detach().cpu()[:, 3].view(-1),
+                "pi_2pi0": model_output1.detach().cpu()[:, 4].view(-1),
+                "3pi": model_output1.detach().cpu()[:, 5].view(-1),
+                "3pi_pi0": model_output1.detach().cpu()[:, 6].view(-1),
+                "background": model_output1.detach().cpu()[:, 7].view(-1),
                 "labels_true": labels_true.detach().cpu().view(-1),
                 "energy": energies.detach().cpu().view(-1),                 #y.E.detach().cpu().view(-1)
             }
@@ -312,6 +316,13 @@ class ExampleWrapper(L.LightningModule):
             df = pd.DataFrame(data=d)
             self.eval_df.append(df)
 
+
+        # accumulate predictions and true labels from all batches
+        preds_batch = model_output.argmax(axis=1).view(-1).detach().cpu().numpy()
+        labels_true_batch = labels_true.view(-1).detach().cpu().numpy()
+
+        self.validation_step_outputs.append((preds_batch, labels_true_batch))
+
         # if self.trainer.is_global_zero:
         # print(model_output)
         # print(labels_true)
@@ -321,17 +332,17 @@ class ExampleWrapper(L.LightningModule):
         wandb.log({"accuracy val ": acc.item()})
 
         # if self.trainer.is_global_zero:
-        wandb.log(
-            {
-                "conf_mat": wandb.plot.confusion_matrix(
-                    probs=None,
-                    y_true=labels_true.view(-1).detach().cpu().numpy(),
-                    preds=model_output.argmax(axis=1).view(-1).detach().cpu().numpy(),
-                    class_names=["pi", "pi0", "e", "muon", "rho"],
-                    #class_names=["rho", "pi"],
-                )
-            }
-        )
+        # wandb.log(
+        #     {
+        #         "conf_mat": wandb.plot.confusion_matrix(
+        #             probs=None,
+        #             y_true=labels_true.view(-1).detach().cpu().numpy(),
+        #             preds=model_output.argmax(axis=1).view(-1).detach().cpu().numpy(),
+        #             class_names=["e", "mu", "pi", "pi pi0", "rpi 2pi0", "3pi", "3pi pi0", "background"],
+        #             #class_names=["rho", "pi"],
+        #         )
+        #     }
+        # )
 
         del loss
         del model_output
@@ -353,6 +364,29 @@ class ExampleWrapper(L.LightningModule):
         if self.args.predict:
             df_batch1 = pd.concat(self.eval_df)
             df_batch1.to_pickle(self.args.model_prefix + "/model_output_eval_logits.pt")
+
+        all_preds = []
+        all_labels = []
+
+        # Gather predictions and true labels from all batches
+        for preds, labels_true in self.validation_step_outputs:
+            all_preds.extend(preds)
+            all_labels.extend(labels_true)
+
+        # Compute confusion matrix
+        wandb.log(
+            {
+                "conf_mat": wandb.plot.confusion_matrix(
+                    probs=None,
+                    y_true=all_labels,
+                    preds=all_preds,
+                    class_names=["0: e", "1: mu", "2: pi pi0", "3: pi", "4: pi 2pi0", "5: 3pi", "6: 3pi pi0", "7: background"],
+                )
+            }
+        )
+
+        # Clear validation_step_outputs for the next epoch
+        self.validation_step_outputs = []    
 
     # def on_after_backward(self):
     #     for name, p in self.named_parameters():
