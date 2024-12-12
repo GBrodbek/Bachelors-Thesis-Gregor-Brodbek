@@ -4,8 +4,20 @@
 # model weight files
 *.ckpt
 
+# ignore all training and testing executables, except for the original, which gets copied to the directories, where I start the script from
+run_training.sh
+run_testing.sh
+jobForTesting.cfg
+jobForTraining.cfg
+
+!modelTrain/run_training.sh
+!modelTrain/run_testing.sh
+!modelTrain/jobForTesting.cfg
+!modelTrain/jobForTraining.cfg
+
+
 # zip files of the training scripts
-.tar.gz
+*.tar.gz
 
 # log, out, err messages from condor
 *.log
