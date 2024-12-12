@@ -139,7 +139,7 @@ def main():
         #     )
 
         if args.load_model_weights is not None:
-            from src.models.Gatr_pf_e_multiclass import (
+            from src.models.Gatr_pf_e_tau_rho import (
                 ExampleWrapper as GravnetModel,
             )
 

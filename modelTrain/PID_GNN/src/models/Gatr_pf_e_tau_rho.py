@@ -320,8 +320,9 @@ class ExampleWrapper(L.LightningModule):
         # accumulate predictions and true labels from all batches
         preds_batch = model_output.argmax(axis=1).view(-1).detach().cpu().numpy()
         labels_true_batch = labels_true.view(-1).detach().cpu().numpy()
+        probs_batch = model_output.detach().cpu().numpy()
 
-        self.validation_step_outputs.append((preds_batch, labels_true_batch))
+        self.validation_step_outputs.append((preds_batch, labels_true_batch, probs_batch))
 
         # if self.trainer.is_global_zero:
         # print(model_output)
@@ -363,15 +364,17 @@ class ExampleWrapper(L.LightningModule):
     def on_validation_epoch_end(self):
         if self.args.predict:
             df_batch1 = pd.concat(self.eval_df)
-            df_batch1.to_pickle(self.args.model_prefix + "/model_output_eval_logits.pt")
+            df_batch1.to_pickle(self.args.model_prefix + f"/model_output_eval_logits_{self.args.wandb_displayname}.pt")
 
         all_preds = []
         all_labels = []
+        all_probs = []
 
         # Gather predictions and true labels from all batches
-        for preds, labels_true in self.validation_step_outputs:
+        for preds, labels_true, probs in self.validation_step_outputs:
             all_preds.extend(preds)
             all_labels.extend(labels_true)
+            all_probs.extend(probs)
 
         # Compute confusion matrix
         wandb.log(
@@ -384,6 +387,9 @@ class ExampleWrapper(L.LightningModule):
                 )
             }
         )
+
+        
+        wandb.log({"roc" : wandb.plot.roc_curve(all_labels, all_probs, labels=None, classes_to_plot=None)})
 
         # Clear validation_step_outputs for the next epoch
         self.validation_step_outputs = []    
@@ -404,7 +410,9 @@ class ExampleWrapper(L.LightningModule):
         optimizer = torch.optim.Adam(
             filter(lambda p: p.requires_grad, self.parameters()), lr=1e-3
         )
-        print("Optimizer params:", filter(lambda p: p.requires_grad, self.parameters()))
+        # print("Optimizer params:", filter(lambda p: p.requires_grad, self.parameters()))
+        print("Optimizer params:", list(filter(lambda p: p.requires_grad, self.parameters())))
+
         return {
             "optimizer": optimizer,
             "lr_scheduler": {
