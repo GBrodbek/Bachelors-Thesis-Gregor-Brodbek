@@ -102,11 +102,19 @@ class ExampleWrapper(L.LightningModule):
         #     classes=torch.unique(labels_true).detach().cpu().numpy(),
         #     y=labels_true.detach().cpu().numpy(),
         # )
+        w_e = 1 / 0.17
+        w_mu = 1 / 0.18
+        w_pi = 1 / 0.11
+        w_pi_pi0 = 1 / 0.25
+        w_pi_2pi0 = 1 / 0.09
+        w_3pi = 1 / 0.09
+        w_3pi_pi0 = 1 / 0.05
+        w_background = 1 / 1.0
 
-        w_rho = 1 / 0.25
-        w_pi = 1 / 0.10
+        # w_rho = 1 / 0.25
+        # w_pi = 1 / 0.10
 
-        class_weights = torch.tensor([w_rho, w_pi]).to(labels_true.device)
+        class_weights = torch.tensor([w_e, w_mu, w_pi, w_pi_pi0, w_pi_2pi0, w_3pi, w_3pi_pi0, w_background]).to(labels_true.device)
         unique_class_labels = torch.unique(labels_true).long()
         # weights_all_classes = torch.zeros(4).to(unique_class_labels.device)
         # weights_all_classes[unique_class_labels] = torch.Tensor(class_weights).to(
@@ -232,7 +240,7 @@ class ExampleWrapper(L.LightningModule):
         labels_true = scatter_max(batch_g.ndata["label_true"].view(-1), labels.long())[
             0
         ]
-        #self.obtain_loss_weighted(labels_true)
+        self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
             1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=8),
@@ -287,7 +295,7 @@ class ExampleWrapper(L.LightningModule):
         #     batch_idx,
         #     path_save=self.args.model_prefix,
         # )
-        #self.obtain_loss_weighted(labels_true)
+        self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
             1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=8),
