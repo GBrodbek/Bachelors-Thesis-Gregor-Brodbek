@@ -33,7 +33,7 @@ wandb login
 cd PID_GNN
 
 #  from the beginning
-python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1149668_{0..49}.root ${HOME}/tmp/background_1160162_{0..9}.root --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 0 --gpus 1 --batch-size 25 --start-lr 1e-3 --num-epochs 50  --fetch-step 0.1 --log-wandb --wandb-displayname run7_50files_10background --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749
+python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1149668_{0..49}.root ${HOME}/tmp/background_1160162_{0..9}.root --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 0 --gpus 1 --batch-size 25 --start-lr 1e-2 --num-epochs 30  --fetch-step 0.1 --log-wandb --wandb-displayname run10_background_lossweights_increase_lr --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749
 
 # continue training from a saved model
 # python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1149668_{0..50}.root ${HOME}/tmp/background_1160162_{0..50}.root  --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 0 --gpus 1 --batch-size 30 --start-lr 1e-3 --num-epochs 50  --fetch-step 0.1 --log-wandb --wandb-displayname newfiles100epochs50 --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749 --load-model-weights ${HOME}/tmp/${MODELNAME}

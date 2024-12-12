@@ -109,7 +109,7 @@ class ExampleWrapper(L.LightningModule):
         w_pi_2pi0 = 1 / 0.09
         w_3pi = 1 / 0.09
         w_3pi_pi0 = 1 / 0.05
-        w_background = 1 / 1.0
+        w_background = 1 / 0.2
 
         # w_rho = 1 / 0.25
         # w_pi = 1 / 0.10
