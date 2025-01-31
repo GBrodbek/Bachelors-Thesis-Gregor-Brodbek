@@ -2,7 +2,7 @@
 
 # Set HOME to current job directory
 HOME=$_CONDOR_JOB_IWD
-MODELNAME=run3_finalsave.ckpt
+MODELNAME=test10_save.ckpt
 CLUSTER_ID=$1
 PROCESS_ID=$2
 
@@ -12,12 +12,14 @@ mkdir -p tmp/
 # Copy files into job
 (
     source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-ubuntu2004-gcc9-opt/setup.sh
-    xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/newTrainingFiles/output_1149668_{50..99}.root tmp/
+    xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/newTrainingFiles/signal/output_1149668_{50..99}.root tmp/
+    xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/newTrainingFiles/zqq/background_1160162_{20..39}.root tmp/
+    xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/newTrainingFiles/bhabha/bhabha_scattering_1192571_{0..9}.root tmp/
     xrdcp -r root://ceph-node-j.etp.kit.edu://gbrodbek/modelsaves/${MODELNAME} tmp/
 )
 
 # directory to save model weights, that get transferred back
-mkdir -p tmp/modelsaves_${CLUSTER_ID}
+mkdir -p tmp/modelsaves/
 
 # extract tar file
 tar -xzf scriptForTraining.tar.gz
@@ -28,4 +30,4 @@ wandb login
 
 # Run testing
 cd PID_GNN
-python3 -m src.train_lightning1 --data-test  ${HOME}/tmp/output_1149668_{50..99}.root  --data-config config_files/config_hit_tracks_tau_predict.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/  --num-workers 0 --gpus 1   --batch-size  60 --start-lr 1e-3 --num-epochs 10  --fetch-step 0.02 --log-wandb --wandb-displayname run3_test_with_test_data --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749 --load-model-weights ${HOME}/tmp/${MODELNAME}  --predict
+python3 -m src.train_lightning1 --data-test  ${HOME}/tmp/output_1149668_{50..100}.root ${HOME}/tmp/   --data-config config_files/config_hit_tracks_tau_predict.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/  --num-workers 0 --gpus 1   --batch-size  60 --start-lr 1e-3 --num-epochs 10  --fetch-step 0.02 --log-wandb --wandb-displayname run1_test_10files --wandb-projectname lightning_logs --wandb-entity gbrodbek-kit4749 --load-model-weights ${HOME}/tmp/${MODELNAME}  --predict

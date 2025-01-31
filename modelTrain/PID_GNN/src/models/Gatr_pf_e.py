@@ -277,13 +277,13 @@ class ExampleWrapper(L.LightningModule):
                 "labels_true": labels_true.detach().cpu().view(-1),
                 "energy": y.E.detach().cpu().view(-1),
             }
-        if self.args.predict:
-            d = {
-                "pion": model_output1.detach().cpu()[:, 0].view(-1),
-                "rho": model_output1.detach().cpu()[:, 1].view(-1),
-                "labels_true": labels_true.detach().cpu().view(-1),
-                "energy": y.E.detach().cpu().view(-1),
-            }
+        # if self.args.predict:
+        #     d = {
+        #         "pion": model_output1.detach().cpu()[:, 0].view(-1),
+        #         "rho": model_output1.detach().cpu()[:, 1].view(-1),
+        #         "labels_true": labels_true.detach().cpu().view(-1),
+        #         "energy": y.E.detach().cpu().view(-1),
+        #     }
             df = pd.DataFrame(data=d)
             self.eval_df.append(df)
 

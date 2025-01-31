@@ -214,7 +214,7 @@ def create_graph(
     #
     # check decay types:
     if tau_sample and not graph_empty:
-        index_labels = torch.Tensor([0, 1, 2, 3, 4, 5, 6, 7, 10, 10, 10, 10]).to(
+        index_labels = torch.Tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 10, 10]).to(
             labels_true.device
         )
         labels_true = g.ndata["label_true"]

@@ -432,8 +432,8 @@ def gen_particles_find(event, debug):
         dict()
     )  ## key: position in stored gen particle array, value: index in gen particle collection
 
-    decay_type1 = 7            # standard label for background samples, gets overwritten, if a tau is found
-    decay_type2 = 7
+    decay_type1 = 8            # standard label for background samples, gets overwritten, if a tau is found
+    decay_type2 = 8
 
     n_part_pre = 0
     index_of_tau1 = 0
@@ -645,8 +645,8 @@ def store_tracks(
             decay_type = decay_types[1]
             # print("belong to tau 2")
         else:
-            decay_type = 7                             # changed from -1 to 7, particles from background events
-            index_tau_ = 7
+            decay_type = 8                             # changed from -1 to 7, particles from background events
+            index_tau_ = 8
             # print("does not belong to any")
 
         trackstate = track.getTrackStates()[0]
@@ -921,8 +921,8 @@ def store_calo_hits(
                 decay_type = decay_types[1]
                 # print("belong to tau 2")
             else:
-                decay_type = 7                      # changed from -1 to 7, particles from background events
-                index_tau_ = 7
+                decay_type = 8                      # changed from -1 to 7, particles from background events
+                index_tau_ = 8
                 # print("does not belong to any")
 
             position = calohit.getPosition()

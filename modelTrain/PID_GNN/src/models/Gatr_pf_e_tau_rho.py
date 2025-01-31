@@ -93,7 +93,7 @@ class ExampleWrapper(L.LightningModule):
         # self.loss_crit = nn.BCELoss()
 
         self.readout = "sum"
-        self.MLP_layer = MLPReadout(17 + 3, 8)
+        self.MLP_layer = MLPReadout(17 + 3, 9)
         self.m = nn.Sigmoid()
 
     def obtain_loss_weighted(self, labels_true):
@@ -104,18 +104,20 @@ class ExampleWrapper(L.LightningModule):
         # )
         w_e = 1 / 0.17
         w_mu = 1 / 0.18
-        w_pi = 1 / 0.11
         w_pi_pi0 = 1 / 0.25
+        w_pi = 1 / 0.11
         w_pi_2pi0 = 1 / 0.09
         w_3pi = 1 / 0.09
         w_3pi_pi0 = 1 / 0.05
-        w_background = 1 / 0.2
+        w_background = 1 / 0.4
+        w_bhabha = 1 / 0.2
 
         # w_rho = 1 / 0.25
         # w_pi = 1 / 0.10
 
-        class_weights = torch.tensor([w_e, w_mu, w_pi, w_pi_pi0, w_pi_2pi0, w_3pi, w_3pi_pi0, w_background]).to(labels_true.device)
-        unique_class_labels = torch.unique(labels_true).long()
+        class_weights = torch.tensor([w_e, w_mu, w_pi_pi0, w_pi, w_pi_2pi0, w_3pi, w_3pi_pi0, w_background, w_bhabha]).to(labels_true.device)
+        # unique_class_labels = torch.unique(labels_true).long()
+        unique_class_labels = torch.arange(9).long().to(labels_true.device)
         # weights_all_classes = torch.zeros(4).to(unique_class_labels.device)
         # weights_all_classes[unique_class_labels] = torch.Tensor(class_weights).to(
         #     unique_class_labels.device
@@ -243,7 +245,7 @@ class ExampleWrapper(L.LightningModule):
         self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
-            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=8),
+            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=9),
         )
         loss_time_end = time()
         if self.trainer.is_global_zero:
@@ -298,7 +300,7 @@ class ExampleWrapper(L.LightningModule):
         self.obtain_loss_weighted(labels_true)
         loss = self.loss_crit(
             torch.sigmoid(model_output),
-            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=8),
+            1.0 * F.one_hot(labels_true.view(-1).long(), num_classes=9),
         )
 
         model_output1 = model_output
@@ -311,7 +313,8 @@ class ExampleWrapper(L.LightningModule):
                 "pi_2pi0": model_output1.detach().cpu()[:, 4].view(-1),
                 "3pi": model_output1.detach().cpu()[:, 5].view(-1),
                 "3pi_pi0": model_output1.detach().cpu()[:, 6].view(-1),
-                "background": model_output1.detach().cpu()[:, 7].view(-1),
+                "qq background": model_output1.detach().cpu()[:, 7].view(-1),
+                "Bhabha": model_output1.detach().cpu()[:, 8].view(-1),
                 "labels_true": labels_true.detach().cpu().view(-1),
                 "energy": energies.detach().cpu().view(-1),                 #y.E.detach().cpu().view(-1)
             }
@@ -391,7 +394,7 @@ class ExampleWrapper(L.LightningModule):
                     probs=None,
                     y_true=all_labels,
                     preds=all_preds,
-                    class_names=["0: e", "1: mu", "2: pi pi0", "3: pi", "4: pi 2pi0", "5: 3pi", "6: 3pi pi0", "7: background"],
+                    class_names=["0: e", "1: mu", "2: pi pi0", "3: pi", "4: pi 2pi0", "5: 3pi", "6: 3pi pi0", "7: qq background", "8: Bhabha"],
                 )
             }
         )
@@ -419,7 +422,7 @@ class ExampleWrapper(L.LightningModule):
             filter(lambda p: p.requires_grad, self.parameters()), lr=1e-3
         )
         # print("Optimizer params:", filter(lambda p: p.requires_grad, self.parameters()))
-        print("Optimizer params:", list(filter(lambda p: p.requires_grad, self.parameters())))
+        # print("Optimizer params:", list(filter(lambda p: p.requires_grad, self.parameters())))
 
         return {
             "optimizer": optimizer,
