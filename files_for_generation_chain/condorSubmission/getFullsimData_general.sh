@@ -18,7 +18,7 @@ TEMP_FILES=${SAVE_DIR}/temporaryFiles
 cd ${WORK_DIR}
 
 # source the key4hep stack
-source /cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh -r 2024-12-22
+source /cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh -r 2024-09-21
 
 # generate events in pythia
 k4run pythia.py -n $NUM_EVENTS --Dumper.Filename ${TEMP_FILES}/out_temp_${ID}.hepmc --Pythia8.PythiaInterface.pythiacard Zcards/Zcard_${WHICH_PROCESS}.cmd
