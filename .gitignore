@@ -5,6 +5,9 @@
 *.pdf
 *.png
 
+# dont ignore thesis
+!Bachelorthesis_GregorBrodbek.pdf
+
 # model weight files
 *.ckpt
 
