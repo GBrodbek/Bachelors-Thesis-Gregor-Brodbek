@@ -1,6 +1,10 @@
 # root files
 *.root
 
+# pdfs and pngs
+*.pdf
+*.png
+
 # model weight files
 *.ckpt
 
