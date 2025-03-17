@@ -25,14 +25,25 @@ The command to start the training looks like this:
 ```python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1149668_{0..49}.root ${HOME}/tmp/background_1160162_{0..19}.root ${HOME}/tmp/bhabha_scattering_1365720_{0..9}.root --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 0 --gpus 1 --batch-size 15 --start-lr 1e-3 --num-epochs 10  --fetch-step 0.1 --log-wandb --wandb-displayname run19 --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749```
 
 `--data-train` takes the input files in the root format of the treemaker
+
 `--data-config` config file
+
 `-clust` and `-clust_dim` not sure, I just left it the way Dolores sent me the command
+
 `--network-config` the model that is trained. [Original model of Dolores](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho_original.py), [Model with my changes](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py)
+
 `--model-prefix` the model parameters get saved here after the training is done
+
 `--num-workers` again not sure, left it as it was
+
 `--gpus` number or amount of gpus that is used, I think this was not yet implemented and hardcoded somewhere though
+
 `--batch-size` batch size
+
 `--start-lr` starting learning rate, but its currently still hardcoded [here](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L422C67-L422C74) as far as I can tell
+
 `--num-epochs` number of epochs
+
 `--fetch-step` not sure
+
 `--log-wandb`, `--wandb-displayname`, `--wandb-projectname`, `--wandb-entity` These are for logging everything on [WandB](https://wandb.ai/gbrodbek-kit4749/topas_logs?nw=nwusergbrodbek)
