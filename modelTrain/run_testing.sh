@@ -25,7 +25,7 @@ mkdir -p tmp/modelsaves/
 tar -xzf scriptForTraining.tar.gz
 
 # login to wandb to track model training
-export WANDB_API_KEY=ef88c6e1260343f280284ed9716c1f4bb76d76b1  # use your API key for wandb
+export WANDB_API_KEY=  # use your API key for wandb
 wandb login
 
 # Run testing
