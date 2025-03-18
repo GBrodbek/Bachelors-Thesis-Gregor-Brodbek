@@ -28,7 +28,7 @@ I wrote a [script](./files_for_generation_chain/condorSubmission/submitFullsim.s
 
 ## Training the Model
 
-To start the training, the docker container from Dolores needs to be setup. ETP users can use this [script](./modelTrain/startContainer.sh) to start the container, that was setup by Jan.
+To start the training, the docker container from Dolores `docker://dologarcia/gatr:v0` needs to be setup. ETP users can use this [script](./modelTrain/startContainer.sh) to start the container, that was setup by Jan.
 The command to start the training looks like this:
 
 ```python3 -m src.train_lightning1 --data-train ${HOME}/tmp/output_1149668_{0..49}.root ${HOME}/tmp/background_1160162_{0..19}.root ${HOME}/tmp/bhabha_scattering_1365720_{0..9}.root --data-config config_files/config_hit_tracks_tau.yaml -clust -clust_dim 3 --network-config src/models/wrapper/example_mode_gatr_e.py --model-prefix ${HOME}/tmp/modelsaves/ --num-workers 0 --gpus 1 --batch-size 15 --start-lr 1e-3 --num-epochs 10  --fetch-step 0.1 --log-wandb --wandb-displayname run19 --wandb-projectname topas_logs --wandb-entity gbrodbek-kit4749```
