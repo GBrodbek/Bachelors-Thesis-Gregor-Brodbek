@@ -4,6 +4,12 @@ This repository contains all scripts and files of the Bachelor's Thesis "Tau Rec
 
 Everything inside the directory modelTrain/PID_GNN is adapted from [Dolores Garcia's work](https://github.com/doloresgarcia/PID_GNN).
 
+## Quick links
+- [Generation of Full Detector Simulation Samples](##Generation of Full Detector Simulation Samples)
+- [Training the Model](##Training the Model)
+- [Testing the Model](##Testing the Model)
+- [Changing Parameters of the Training](##Changing Parameters of the Training)
+- [Plots and Confusion Matrix](##Plots and Confusion Matrix)
 
 ## Generation of Full Detector Simulation Samples
 
@@ -67,7 +73,7 @@ For the training and testing, I again used a [script](./modelTrain/condor_traini
 
 ## Changing Parameters of the Training
 
-- Change [start learning rate](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L422C67-L422C74
+- Change [start learning rate](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L422C67-L422C74)
 - Modify [class specific weights](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L99C4-L127C1) to normalize the ratios of samples that are used per class
 - Change number of classes:
   - Adapt num_classes in [1](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L303C58-L303C71), [2](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L248C58-L248C71) and in the readout [MLP](./modelTrain/PID_GNN/src/models/Gatr_pf_e_tau_rho.py#L96C44-L96C46) (the back number).
