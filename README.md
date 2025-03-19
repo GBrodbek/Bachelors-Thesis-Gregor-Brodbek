@@ -25,6 +25,8 @@ The event generation chain looks like this:
 
 I wrote a [script](./files_for_generation_chain/condorSubmission/submitFullsim.sh), that automatically submits the whole simulation process to HTCondor at ETP. Different Pythia cards for different processes can be found [here](./files_for_generation_chain/Zcards). Also Xunwu made a [repository](https://github.com/zuoxunwu/FullSim_TauID), that explains the whole generation process in more detail.
 
+You can add more decay modes in this [function](./files_for_generation_chain/pftree_maker_from_dolores/tree_tools_tautau.py#L16C1-L50C38).
+
 
 ## Training the Model
 
