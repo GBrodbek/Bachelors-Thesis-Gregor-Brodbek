@@ -22,6 +22,7 @@ jobForTraining.cfg
 !modelTrain/jobForTesting.cfg
 !modelTrain/jobForTraining.cfg
 
+!FinalModel.ckpt
 
 # zip files of the training scripts
 *.tar.gz
